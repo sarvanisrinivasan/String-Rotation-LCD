@@ -1,0 +1,39 @@
+#include "lcdheader.h" // Contains functions which controls the display of LCD and how the data has to be presented
+void LCD_ROTATE(char s[50]);
+void LCD_STR(char s[50],int);
+int main()
+{
+	 char s[50]="SARVANI";
+	 int i=0;
+   LCD_INT();
+	 LCD_ROTATE(s);
+}
+void LCD_ROTATE(char s[50])  // Rotates the starting index of the string from DDRAM staring address 0x80 to 0x8f
+{
+	  int i=0x80;
+	 while(1)
+	{
+		   LCD_COMMAND(i);
+		   LCD_STR(s,i);
+		   delay_ms(500);
+		   LCD_COMMAND(0x01);
+		   i++;
+		   if(i>0X8F)
+			 {
+				   i=0X80;
+			 }
+	}
+}
+void LCD_STR(char s[50],int j)  //Rotates the index of each alphabet of the string from 0X80 to 0x8f
+{
+	  int i=0;
+	  while(s[i]!=0)
+		{
+			  j++;
+			  if(j>0X8F)
+				     j=0x80;
+				LCD_COMMAND(j); 
+			  LCD_DATA(s[i]);
+			  i++;
+		}
+}
