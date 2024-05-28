@@ -5,12 +5,12 @@ int main()
 {
 	 char s[50]="SARVANI";
 	 int i=0;
-   LCD_INT();
+         LCD_INT();
 	 LCD_ROTATE(s);
 }
 void LCD_ROTATE(char s[50])  // Rotates the starting index of the string from DDRAM staring address 0x80 to 0x8f
 {
-	  int i=0x80;
+	 int i=0x80;
 	 while(1)
 	{
 		   LCD_COMMAND(i);
@@ -20,7 +20,7 @@ void LCD_ROTATE(char s[50])  // Rotates the starting index of the string from DD
 		   i++;
 		   if(i>0X8F)
 			 {
-				   i=0X80;
+			       i=0X80;
 			 }
 	}
 }
@@ -32,7 +32,7 @@ void LCD_STR(char s[50],int j)  //Rotates the index of each alphabet of the stri
 			  j++;
 			  if(j>0X8F)
 				     j=0x80;
-				LCD_COMMAND(j); 
+			  LCD_COMMAND(j); 
 			  LCD_DATA(s[i]);
 			  i++;
 		}
